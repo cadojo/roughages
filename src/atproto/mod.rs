@@ -1,11 +1,9 @@
-
-
-pub struct DID {
-    method: String,
-    identifier: String,
+pub struct Did {
+    pub method: String,
+    pub identifier: String,
 }
 
-impl DID {
+impl Did {
     fn validate(&self) -> bool {
         return !self.method.is_empty()
             && !self.identifier.is_empty()
@@ -15,6 +13,7 @@ impl DID {
                 .chain(self.identifier.chars())
                 .all(|c: char| c.is_lowercase());
     }
+
     fn uri(&self) -> String {
         format!("did:{}:{}", self.method, self.identifier)
     }
